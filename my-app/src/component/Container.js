@@ -10,10 +10,13 @@ function Container() {
 
   useEffect(() => {
     init();
+  }, []);
+
+  useEffect(() => {
     subscribeChat((message) => {
       setMessages((prevState) => [...prevState, { message }]);
     });
-  }, [setMessages]);
+  }, []);
 
   console.log("emin");
   return (
