@@ -16,7 +16,7 @@ function Container() {
     subscribeChat((message) => {
       setMessages((prevState) => [...prevState, { message }]);
     });
-  }, []);
+  }, [setMessages]);
 
   console.log("emin");
   return (
