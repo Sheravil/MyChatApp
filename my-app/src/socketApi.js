@@ -22,3 +22,12 @@ export const subscribeChat = (cb) => {
     cb(message);
   });
 };
+
+export const subscribeOldChat = (cb) => {
+  if (!socket) return;
+
+  socket.on("message-list", (messages) => {
+    console.log("Eski mesajlar yüklendi");
+    cb(messages);
+  });
+};

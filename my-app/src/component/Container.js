@@ -3,22 +3,19 @@ import ChatForm from "./ChatForm";
 import ChatList from "./ChatList";
 import { useChat } from "../context/ChatContext";
 
-import { init, subscribeChat } from "../socketApi";
+import { init, subscribeChat, subscribeOldChat } from "../socketApi";
 
 function Container() {
   const { setMessages } = useChat();
 
   useEffect(() => {
     init();
-  }, []);
-
-  useEffect(() => {
+    subscribeOldChat((messages) => setMessages(messages));
     subscribeChat((message) => {
       setMessages((prevState) => [...prevState, { message }]);
     });
-  }, [setMessages]);
+  }, []);
 
-  console.log("emin");
   return (
     <div className="App">
       <ChatList />
